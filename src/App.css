@@ -1,0 +1,343 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  overflow: hidden;
+}
+
+#menu-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#menu-screen > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.menu-backdrop__grad {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 110% 78% at 24% 18%, rgba(56, 118, 255, 0.35), transparent 56%),
+    radial-gradient(ellipse 92% 74% at 84% 56%, rgba(102, 146, 245, 0.14), transparent 52%),
+    linear-gradient(165deg, #071130 0%, #10235a 44%, #1a3780 100%);
+  animation: menu-bg-shift 18s ease-in-out infinite alternate;
+}
+
+.menu-backdrop__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes menu-bg-shift {
+  from { filter: hue-rotate(0deg) saturate(1); transform: scale(1); }
+  to { filter: hue-rotate(5deg) saturate(1.03); transform: scale(1.02); }
+}
+
+.menu-portrait-shell {
+  position: absolute;
+  right: -6vw;
+  bottom: 0;
+  width: min(68vw, 1120px);
+  height: 106vh;
+  z-index: 8;
+  pointer-events: none;
+  opacity: 0;
+  filter: saturate(0.76) contrast(0.95) brightness(0.89);
+  transform: translateX(44vw) scale(1.03);
+  transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.52s ease;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.6) 20%, #000 38%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.6) 20%, #000 38%, #000 100%);
+  isolation: isolate;
+}
+
+.menu-portrait-shell.mounted {
+  opacity: 0.34;
+  transform: translateX(0) scale(1);
+}
+
+.menu-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right bottom;
+  mix-blend-mode: screen;
+  filter: drop-shadow(-52px 0 98px rgba(37, 79, 187, 0.28));
+}
+
+.menu-portrait--menu {
+  object-fit: contain;
+  object-position: 88% 100%;
+  filter: saturate(0.72) contrast(0.92) brightness(0.86) drop-shadow(-46px 0 90px rgba(32, 76, 186, 0.28));
+}
+
+.menu-portrait-shell--menu {
+  right: -2vw;
+  width: min(62vw, 980px);
+  height: 100vh;
+  /* Fade longo à esquerda: some a “costura” vertical junto ao menu */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.06) 14%,
+    rgba(0, 0, 0, 0.22) 28%,
+    rgba(0, 0, 0, 0.55) 44%,
+    #000 58%,
+    #000 82%,
+    rgba(0, 0, 0, 0.52) 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.06) 14%,
+    rgba(0, 0, 0, 0.22) 28%,
+    rgba(0, 0, 0, 0.55) 44%,
+    #000 58%,
+    #000 82%,
+    rgba(0, 0, 0, 0.52) 92%,
+    transparent 100%
+  );
+}
+
+.menu-portrait-shell--menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 17, 48, 0.88) 0%,
+      rgba(10, 28, 78, 0.72) 18%,
+      rgba(12, 31, 92, 0.42) 36%,
+      rgba(12, 31, 92, 0.14) 52%,
+      transparent 72%
+    ),
+    radial-gradient(circle at 22% 48%, rgba(26, 55, 128, 0.35) 0%, transparent 58%);
+}
+
+.menu-portrait-shell--menu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6vw;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(14, 33, 92, 0.34) 44%, rgba(14, 33, 92, 0.74) 100%);
+}
+
+.menu-portrait-shell.pose-0 {
+  opacity: 0.35;
+  transform: translateX(0) scale(1);
+}
+
+.menu-portrait-shell.pose-1 {
+  opacity: 0.33;
+  transform: translateX(-0.8vw) scale(1.01);
+}
+
+.menu-portrait-shell.pose-2 {
+  opacity: 0.31;
+  transform: translateX(-1.5vw) scale(1.013);
+}
+
+.menu-portrait-shell.pose-3 {
+  opacity: 0.29;
+  transform: translateX(-2.2vw) scale(1.018);
+}
+
+.menu-portrait-shell.pose-4 {
+  opacity: 0.27;
+  transform: translateX(-2.8vw) scale(1.02);
+}
+
+@keyframes about-portrait-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(42vw) scale(1.015);
+  }
+  45% {
+    opacity: 0.22;
+  }
+  100% {
+    opacity: 0.29;
+    transform: translateX(0) scale(1.015);
+  }
+}
+
+.about-portrait-shell {
+  position: absolute;
+  right: -6vw;
+  bottom: 0;
+  width: min(68vw, 1120px);
+  height: 106vh;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.29;
+  transform: scale(1.015);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.6) 20%, #000 38%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.6) 20%, #000 38%, #000 100%);
+  animation: about-portrait-slide-in 0.92s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-portrait-shell {
+    animation: none;
+    opacity: 0.29;
+    transform: scale(1.015);
+  }
+}
+
+.about-portrait-shell .menu-portrait {
+  object-fit: cover;
+  object-position: right bottom;
+  mix-blend-mode: screen;
+}
+
+/* Socials — arte à direita (z-index abaixo da lista e dos infobars) */
+.socials-portrait-shell {
+  position: absolute;
+  right: -8vw;
+  bottom: 0;
+  width: min(66vw, 1080px);
+  height: 112vh;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.28;
+  isolation: isolate;
+  filter: saturate(0.72) contrast(0.92) brightness(0.86);
+  /* Fade vertical + horizontal = some retângulo da arte em cima e nas laterais */
+  -webkit-mask-image:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 6%,
+      rgba(0, 0, 0, 0.42) 16%,
+      rgba(0, 0, 0, 0.88) 28%,
+      #000 40%,
+      #000 72%,
+      rgba(0, 0, 0, 0.35) 88%,
+      transparent 100%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 10%,
+      rgba(0, 0, 0, 0.42) 28%,
+      rgba(0, 0, 0, 0.88) 44%,
+      #000 56%,
+      #000 80%,
+      rgba(0, 0, 0, 0.52) 93%,
+      transparent 100%
+    );
+  mask-image:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 6%,
+      rgba(0, 0, 0, 0.42) 16%,
+      rgba(0, 0, 0, 0.88) 28%,
+      #000 40%,
+      #000 72%,
+      rgba(0, 0, 0, 0.35) 88%,
+      transparent 100%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 10%,
+      rgba(0, 0, 0, 0.42) 28%,
+      rgba(0, 0, 0, 0.88) 44%,
+      #000 56%,
+      #000 80%,
+      rgba(0, 0, 0, 0.52) 93%,
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.socials-portrait-shell .menu-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ancorar mais acima no quadro da arte: cabeça/rosto visíveis (antes 92% empurrava tudo para baixo) */
+  object-position: 68% 38%;
+  transform: scale(1.05);
+  transform-origin: 66% 52%;
+  mix-blend-mode: screen;
+  filter: saturate(0.66) contrast(0.88) brightness(0.84) drop-shadow(-48px 0 100px rgba(24, 68, 175, 0.32));
+}
+
+.socials-portrait-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 14, 52, 0.88) 0%,
+      rgba(7, 20, 62, 0.45) 14%,
+      rgba(10, 28, 78, 0.18) 32%,
+      transparent 52%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(7, 17, 48, 0.88) 0%,
+      rgba(10, 28, 78, 0.58) 18%,
+      rgba(12, 31, 92, 0.2) 44%,
+      transparent 66%
+    ),
+    radial-gradient(circle at 18% 38%, rgba(28, 72, 168, 0.26) 0%, transparent 52%);
+}
+
+.socials-portrait-shell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 9vw;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(10, 26, 72, 0.35) 38%,
+    rgba(12, 30, 88, 0.78) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socials-portrait-shell {
+    filter: saturate(0.74) contrast(0.93) brightness(0.87);
+  }
+}
