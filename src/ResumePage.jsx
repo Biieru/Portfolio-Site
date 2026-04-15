@@ -681,9 +681,31 @@ export default function ResumePage() {
           }
           .resume-detail-panel-body--dense .resume-detail-row {
             grid-template-columns: 36px 1fr;
+            gap: 8px 10px;
+            padding: 10px 10px;
           }
           .resume-detail-panel-body--dense .resume-detail-row-title {
-            font-size: clamp(11px, 3.1vw, 16px);
+            font-size: clamp(13px, 3.8vw, 17px);
+            line-height: 1.2;
+          }
+          .resume-detail-panel-body--dense .resume-detail-status {
+            font-size: 13px;
+            padding: 6px 10px;
+          }
+          .resume-detail-panel-body--dense .resume-detail-top {
+            min-height: 82px;
+          }
+          .resume-detail-panel-body--dense .resume-detail-top-title {
+            font-size: clamp(18px, 5vw, 26px);
+          }
+          .resume-detail-panel-body--dense .resume-detail-top-index {
+            font-size: 38px;
+          }
+          .resume-detail-panel-body--dense .resume-detail-list {
+            gap: 8px;
+          }
+          .resume-detail-panel-body--dense .resume-detail-bullet {
+            font-size: clamp(12px, 3.4vw, 16px);
           }
         }
       `}</style>
