@@ -518,6 +518,79 @@ export default function AboutMe() {
           border-radius: 3px;
           padding: 1px 6px; font-size: 11px;
         }
+
+        @media (max-width: 720px) {
+          .sc-bar,
+          .sc-bar-red {
+            width: min(94vw, 420px);
+          }
+          .sc-bar-outer.active .sc-bar-fill {
+            clip-path: polygon(18% 0, 100% 0, calc(100% - 12px) 100%, calc(18% + min(28vw, 120px)) 100%);
+          }
+          .sc-bar-content {
+            padding: 0 8px 0 4px;
+            gap: 2px;
+          }
+          .sc-role {
+            font-size: clamp(16px, 5.5vw, 28px);
+            padding: 0 6px 0 2px;
+            transform: rotate(-22deg);
+          }
+          .sc-main {
+            padding-left: 4px;
+            min-width: 0;
+          }
+          .sc-label {
+            font-size: clamp(13px, 4.2vw, 20px);
+            letter-spacing: 1.5px;
+          }
+          .sc-stats {
+            padding-right: 6px;
+            gap: 4px;
+            flex-shrink: 0;
+          }
+          .sc-stat-num {
+            font-size: clamp(16px, 4vw, 22px);
+          }
+          .sc-stat-tag {
+            font-size: 8px;
+            letter-spacing: 1px;
+          }
+          .sc-reveal-panel {
+            left: 3vw;
+            width: min(94vw, 440px);
+            top: 32vh;
+            height: 58vh;
+            transform: translateX(0) rotate(-12deg);
+            transform-origin: left center;
+          }
+          .sc-reveal-panel.mounted {
+            animation: none;
+            opacity: 0.94;
+            transform: translateX(0) rotate(-12deg) !important;
+          }
+          .sc-reveal-upper-line {
+            font-size: clamp(10px, 2.8vw, 14px);
+            max-width: 100%;
+          }
+          .sc-reveal-lower-bar {
+            width: min(88%, 320px);
+            font-size: clamp(10px, 2.6vw, 13px);
+            padding: 6px 12px;
+          }
+          .sc-right-nav {
+            top: 8vh;
+            left: 3vw;
+            transform: translateX(0) rotate(-12deg);
+          }
+          .sc-right-nav .sc-nav-btn {
+            font-size: clamp(28px, 9vw, 56px);
+          }
+          .sc-footer {
+            bottom: 12px;
+            right: 12px;
+          }
+        }
       `}</style>
 
       <div className="sc-root" role="navigation">

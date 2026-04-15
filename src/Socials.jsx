@@ -514,6 +514,87 @@ export default function Socials() {
           border-radius: 3px;
           padding: 1px 6px; font-size: 11px;
         }
+
+        @media (max-width: 720px) {
+          .sc-bar,
+          .sc-bar-red {
+            width: min(94vw, 420px);
+          }
+          .sc-bar-outer.active .sc-bar-fill {
+            clip-path: polygon(18% 0, 100% 0, calc(100% - 12px) 100%, calc(18% + min(28vw, 120px)) 100%);
+          }
+          .sc-bar-content {
+            padding: 0 8px 0 4px;
+            gap: 2px;
+          }
+          .sc-role {
+            font-size: clamp(16px, 5.5vw, 28px);
+            padding: 0 6px 0 2px;
+            transform: rotate(-22deg);
+          }
+          .sc-main {
+            min-width: 0;
+            flex: 1 1 auto;
+          }
+          .sc-label {
+            font-size: clamp(12px, 3.8vw, 18px);
+            letter-spacing: 1.5px;
+          }
+          .sc-stats {
+            padding-right: 6px;
+            gap: 4px;
+          }
+          .sc-stat-num {
+            font-size: clamp(15px, 3.8vw, 20px);
+          }
+          .sc-stat-tag {
+            font-size: 8px;
+            letter-spacing: 1px;
+          }
+          .sc-right-nav {
+            top: 10px;
+            left: 8px;
+            right: 8px;
+            width: auto;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 0 4px;
+          }
+          .sc-right-nav .sc-nav-btn {
+            font-size: clamp(26px, 8vw, 48px);
+          }
+          .sc-right-nav .sc-nav-label {
+            font-size: clamp(14px, 4.5vw, 20px);
+            color: #fff;
+            -webkit-text-stroke: 1px #000;
+            paint-order: stroke fill;
+          }
+          .sc-info-bar-wrap {
+            left: 10px !important;
+            right: 10px !important;
+            width: auto !important;
+            top: 72px !important;
+            height: auto;
+            min-height: 42px;
+          }
+          .sc-info-bar-text {
+            font-size: clamp(11px, 3.2vw, 16px);
+            letter-spacing: 1px;
+          }
+          .sc-info-bar-box {
+            font-size: clamp(12px, 3vw, 16px);
+            padding: 0 8px;
+          }
+          .sc-info-bar-count {
+            font-size: clamp(14px, 3.5vw, 18px);
+            margin-right: 8px;
+          }
+          .sc-footer {
+            bottom: 10px;
+            right: 10px;
+          }
+        }
       `}</style>
 
       <div className="sc-root" role="navigation">

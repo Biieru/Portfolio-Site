@@ -555,6 +555,136 @@ export default function ResumePage() {
         .resume-cv-btn.secondary {
           background: #fff;
         }
+
+        @media (max-width: 780px) {
+          .resume-overlay {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0 12px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            pointer-events: none;
+          }
+          .resume-stack {
+            position: relative;
+            left: auto;
+            top: auto;
+            width: min(calc(100vw - 20px), 520px);
+            transform: none;
+            margin: 0 auto;
+            flex-shrink: 0;
+            pointer-events: none;
+          }
+          .resume-list-tag {
+            margin-left: 0;
+            font-size: clamp(40px, 12vw, 72px);
+          }
+          .resume-card {
+            height: auto;
+            min-height: 108px;
+          }
+          .resume-card-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            padding: 12px 12px 52px 54px;
+          }
+          .resume-rank {
+            align-self: flex-end;
+            margin-top: -4px;
+          }
+          .resume-title {
+            font-size: clamp(22px, 6.5vw, 40px);
+            max-width: 100%;
+          }
+          .resume-subtitle-bar {
+            left: 50px;
+            right: 8px;
+            bottom: 8px;
+            height: auto;
+            min-height: 30px;
+            padding: 6px 10px;
+            align-items: flex-start;
+          }
+          .resume-subtitle {
+            white-space: normal;
+            line-height: 1.2;
+            font-size: clamp(11px, 3.4vw, 18px);
+          }
+          .resume-detail-panel {
+            position: relative;
+            top: auto;
+            right: auto;
+            left: auto;
+            width: min(calc(100vw - 20px), 520px);
+            max-height: none;
+            margin: 14px auto 20px;
+            flex: 1 1 auto;
+            min-height: 0;
+            pointer-events: auto;
+          }
+          .resume-detail-panel-body {
+            max-height: none;
+          }
+          .resume-detail-top {
+            grid-template-columns: 56px 1fr 44px;
+            gap: 8px;
+            padding: 0 12px;
+            min-height: 76px;
+          }
+          .resume-detail-top-index {
+            font-size: 36px;
+          }
+          .resume-detail-top-title {
+            font-size: clamp(14px, 4.2vw, 26px);
+            word-break: break-word;
+            hyphens: auto;
+          }
+          .resume-detail-top-progress {
+            font-size: 24px;
+          }
+          .resume-detail-row {
+            grid-template-columns: 40px 1fr;
+            grid-template-rows: auto auto;
+            gap: 6px 10px;
+            padding: 10px 12px;
+            min-height: 0;
+            align-items: start;
+          }
+          .resume-detail-row-index {
+            grid-row: 1 / span 2;
+            font-size: 20px;
+          }
+          .resume-detail-row-title {
+            grid-column: 2;
+            grid-row: 1;
+            font-size: clamp(12px, 3.5vw, 20px);
+            line-height: 1.15;
+            word-break: break-word;
+          }
+          .resume-detail-status {
+            grid-column: 2;
+            grid-row: 2;
+            justify-self: start;
+            font-size: 14px;
+            padding: 5px 9px;
+          }
+          .resume-detail-bullet {
+            font-size: clamp(11px, 3.2vw, 16px);
+            line-height: 1.35;
+          }
+          .resume-detail-bottom-title {
+            font-size: 22px;
+          }
+          .resume-detail-panel-body--dense .resume-detail-row {
+            grid-template-columns: 36px 1fr;
+          }
+          .resume-detail-panel-body--dense .resume-detail-row-title {
+            font-size: clamp(11px, 3.1vw, 16px);
+          }
+        }
       `}</style>
 
       <div className="resume-overlay">
