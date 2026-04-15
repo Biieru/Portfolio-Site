@@ -515,10 +515,20 @@ export default function Socials() {
           padding: 1px 6px; font-size: 11px;
         }
 
-        @media (max-width: 720px) {
+        @media (max-width: 1100px), (pointer: coarse) {
+          .socials-portrait-shell {
+            opacity: 0.2;
+            right: -20vw;
+            width: 96vw;
+          }
+          .sc-root {
+            justify-content: flex-start;
+            padding-top: 24vh;
+            gap: 10px;
+          }
           .sc-bar,
           .sc-bar-red {
-            width: min(94vw, 420px);
+            width: min(96vw, 520px);
           }
           .sc-bar-outer.active .sc-bar-fill {
             clip-path: polygon(18% 0, 100% 0, calc(100% - 12px) 100%, calc(18% + min(28vw, 120px)) 100%);
@@ -574,7 +584,7 @@ export default function Socials() {
             left: 10px !important;
             right: 10px !important;
             width: auto !important;
-            top: 72px !important;
+            top: 84px !important;
             height: auto;
             min-height: 42px;
           }

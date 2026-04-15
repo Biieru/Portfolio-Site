@@ -556,12 +556,13 @@ export default function ResumePage() {
           background: #fff;
         }
 
-        @media (max-width: 780px) {
+        @media (max-width: 1100px), (pointer: coarse) {
           .resume-overlay {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 8px 0 12px;
+            justify-content: flex-start;
+            padding: 10px 0 18px;
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
@@ -571,7 +572,7 @@ export default function ResumePage() {
             position: relative;
             left: auto;
             top: auto;
-            width: min(calc(100vw - 20px), 520px);
+            width: min(calc(100vw - 16px), 620px);
             transform: none;
             margin: 0 auto;
             flex-shrink: 0;
@@ -618,7 +619,7 @@ export default function ResumePage() {
             top: auto;
             right: auto;
             left: auto;
-            width: min(calc(100vw - 20px), 520px);
+            width: min(calc(100vw - 16px), 620px);
             max-height: none;
             margin: 14px auto 20px;
             flex: 1 1 auto;

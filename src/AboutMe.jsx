@@ -519,10 +519,20 @@ export default function AboutMe() {
           padding: 1px 6px; font-size: 11px;
         }
 
-        @media (max-width: 720px) {
+        @media (max-width: 1100px), (pointer: coarse) {
+          .about-portrait-shell {
+            opacity: 0.2;
+            right: -20vw;
+            width: 96vw;
+          }
+          .sc-root {
+            justify-content: flex-start;
+            padding-top: 22vh;
+            gap: 10px;
+          }
           .sc-bar,
           .sc-bar-red {
-            width: min(94vw, 420px);
+            width: min(96vw, 520px);
           }
           .sc-bar-outer.active .sc-bar-fill {
             clip-path: polygon(18% 0, 100% 0, calc(100% - 12px) 100%, calc(18% + min(28vw, 120px)) 100%);
@@ -558,9 +568,9 @@ export default function AboutMe() {
           }
           .sc-reveal-panel {
             left: 3vw;
-            width: min(94vw, 440px);
-            top: 32vh;
-            height: 58vh;
+            width: min(96vw, 560px);
+            top: 34vh;
+            height: 56vh;
             transform: translateX(0) rotate(-12deg);
             transform-origin: left center;
           }
@@ -579,7 +589,7 @@ export default function AboutMe() {
             padding: 6px 12px;
           }
           .sc-right-nav {
-            top: 8vh;
+            top: 9vh;
             left: 3vw;
             transform: translateX(0) rotate(-12deg);
           }
