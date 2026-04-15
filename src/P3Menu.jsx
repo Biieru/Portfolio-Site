@@ -29,6 +29,7 @@ export default function P3Menu({
   const [active, setActive] = useState(initialActive);
   const [mounted, setMounted] = useState(false);
   const [animKey, setAnimKey] = useState(0);
+  const [isTouchLike, setIsTouchLike] = useState(false);
 
   const activate = useCallback((idx) => {
     setActive((prev) => {
@@ -41,6 +42,15 @@ export default function P3Menu({
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 1000);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(pointer: coarse), (max-width: 900px)");
+    const sync = () => setIsTouchLike(mq.matches);
+    sync();
+    mq.addEventListener?.("change", sync);
+    return () => mq.removeEventListener?.("change", sync);
   }, []);
 
   useEffect(() => {
@@ -283,6 +293,50 @@ export default function P3Menu({
         .p3-name-tag span:first-child {
           color: rgba(0, 0, 0, 0.86);
         }
+
+        @media (max-width: 900px), (pointer: coarse) {
+          .p3-menu {
+            width: min(96vw, 560px);
+            padding: 32px 10px 56px;
+            gap: 10px;
+          }
+          .p3-row {
+            width: 100%;
+            min-height: 62px;
+            justify-content: flex-start;
+            padding: 8px 0;
+            touch-action: manipulation;
+          }
+          .p3-label-wrap {
+            padding-left: 2px;
+          }
+          .p3-label-base {
+            letter-spacing: 1px;
+          }
+          .p3-hint {
+            display: none;
+          }
+          .p3-audio-indicator {
+            right: 10px;
+            bottom: 12px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            gap: 6px;
+          }
+          .p3-audio-icon {
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+          }
+          .p3-audio-volume {
+            width: 68px;
+          }
+          .p3-name-tag {
+            top: 16px;
+            left: 16px;
+            font-size: clamp(28px, 8vw, 50px);
+          }
+        }
       `}</style>
 
       <div className="p3-overlay">
@@ -312,6 +366,10 @@ export default function P3Menu({
                 }}
                 onClick={(e) => {
                   e.preventDefault();
+                  if (isTouchLike && !isActive) {
+                    activate(i);
+                    return;
+                  }
                   playMenuConfirmTick();
                   onNavigate?.(item.page);
                 }}

@@ -609,10 +609,16 @@ export default function AboutMe() {
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
             onClick={() => {
+              const isSameItem = active === i;
               setActive((prev) => {
                 if (prev !== i) playMenuNavTick();
                 return i;
               });
+              if (isSameItem) {
+                setRevealed((prev) => !prev);
+              } else {
+                setRevealed(true);
+              }
             }}
             onMouseEnter={() => {
               setActive((prev) => {
