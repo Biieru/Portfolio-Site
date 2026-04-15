@@ -6,28 +6,30 @@ const PROJECTS = [
     title: "FEIRA-PLUS",
     type: "FRONTEND / MOBILE",
     summary:
-      "Lista inteligente para atacado: organização por corredor, UI com foco em acessibilidade, export TXT/JPG.",
+      "Smart wholesale shopping list: aisle-based organization, accessibility-focused UI, TXT/JPG export.",
     stack: "React · Vite · Capacitor · localStorage",
     href: "https://github.com/Biieru/Feira-PLUS",
   },
   {
     title: "BOOKSAPI",
     type: "BACK-END / API",
-    summary: "API REST para livros com CRUD, Swagger, testes automatizados e SQLite via SQLAlchemy.",
+    summary:
+      "REST API for books with CRUD, Swagger, automated tests, and SQLite via SQLAlchemy.",
     stack: "Flask · SQLAlchemy · Flasgger · pytest",
     href: "https://github.com/Biieru/BooksAPI",
   },
   {
-    title: "ESTABELECIMENTOS CREDENCIADOS",
+    title: "ACCREDITED ESTABLISHMENTS",
     type: "DATA / PYTHON",
-    summary: "Consulta e gestão de estabelecimentos credenciados com dados do Banco Central.",
-    stack: "Python · interface web",
+    summary: "Query and management of accredited establishments using Central Bank data.",
+    stack: "Python · web interface",
     href: "https://github.com/Biieru/EstabelecimentosCredenciados",
   },
   {
     title: "QA4",
     type: "TESTING / QA",
-    summary: "Calculadora com testes unitários em Python (casos positivos/negativos, divisão por zero).",
+    summary:
+      "Calculator with Python unit tests (positive and negative cases, division by zero).",
     stack: "Python · unittest",
     href: "https://github.com/Biieru/QA4",
   },
@@ -36,18 +38,24 @@ const PROJECTS = [
 const CREATIVE = [
   {
     title: "THE WAY OF THE GUARDIANS",
-    summary: "Conceito de RPG mitológico, combate tático por turnos, estética 16-bit.",
+    summary:
+      "Mythological RPG concept, turn-based tactical combat, 16-bit-inspired presentation.",
     href: "https://sites.google.com/view/gabriel-resume/game-projects/way-of-the-guardians",
+    linkLabel: "READ ON GOOGLE SITES →",
   },
   {
     title: "YOU, WHO TAUGHT ME HOW TO LOVE",
-    summary: "Narrativa de personagem imortal — memória, sacrifício e dilemas morais.",
+    summary:
+      "Immortal character narrative — memory, sacrifice, and moral dilemmas.",
     href: "https://sites.google.com/view/gabriel-resume/game-projects/you-who-taught-me-how-to-love",
+    linkLabel: "READ ON GOOGLE SITES →",
   },
   {
-    title: "CAMINHO DAS CONSTELAÇÕES",
-    summary: "Site do teu RPG publicado, com ambientação e navegação temática.",
+    title: "PATH OF THE CONSTELLATIONS",
+    summary:
+      "Published RPG site with themed atmosphere and navigation.",
     href: "https://caminho-das-constelacoes.onrender.com/",
+    linkLabel: "VISIT SITE →",
   },
 ];
 
@@ -85,15 +93,6 @@ export default function ProjectsPage() {
           color: #f6fbff;
           letter-spacing: 2px;
           text-shadow: 0 2px 0 rgba(0,0,0,0.2);
-          margin-bottom: 8px;
-        }
-        .proj-sub {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 300;
-          font-size: 14px;
-          color: rgba(255,255,255,0.55);
-          max-width: 640px;
-          line-height: 1.6;
           margin-bottom: 28px;
         }
         .proj-grid {
@@ -172,18 +171,6 @@ export default function ProjectsPage() {
 
       <div className="proj-root">
         <div className="proj-head">SIDE PROJECTS</div>
-        <p className="proj-sub">
-          Destaques alinhados ao modelo antigo (portfolio.jsx) e ao site{" "}
-          <a
-            href="https://sites.google.com/view/gabriel-resume/home"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#7dd4fc" }}
-          >
-            Gabriel&apos;s Resume (Google Sites)
-          </a>
-          . Links abrem em nova aba.
-        </p>
 
         <div className="proj-section-title">FEATURED REPOS</div>
         <div className="proj-grid">
@@ -208,7 +195,7 @@ export default function ProjectsPage() {
               <h3>{c.title}</h3>
               <p>{c.summary}</p>
               <a className="proj-link" href={c.href} target="_blank" rel="noopener noreferrer">
-                READ ON GOOGLE SITES →
+                {c.linkLabel}
               </a>
             </article>
           ))}

@@ -21,7 +21,7 @@ export default function P3Menu({
   onNavigate,
   onActiveChange,
   initialActive = 0,
-  bgmVolume = 0.5,
+  bgmVolume = 0.25,
   bgmMuted = false,
   onToggleMute,
   onVolumeChange,

@@ -146,7 +146,7 @@ function AnimatedRoutes({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
 
 export default function App() {
   const audioRef = useRef(null)
-  const [bgmVolume, setBgmVolume] = useState(0.5)
+  const [bgmVolume, setBgmVolume] = useState(0.25)
   const [bgmMuted, setBgmMuted] = useState(false)
 
   return (

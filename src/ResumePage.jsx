@@ -5,7 +5,7 @@ import { playMenuNavTick } from "./menuSfx";
 const CV_PATH = "/gabriel-cv-us.pdf";
 
 const ITEMS = [
-  { id: "i", badge: "I", title: "EDUCATION", subtitle: "SENAC · Unibra · EREM", rank: 1 },
+  { id: "i", badge: "I", title: "EDUCATION", subtitle: "SENAC · Unibra · Porto Digital", rank: 1 },
   { id: "ii", badge: "II", title: "SKILLS", subtitle: "Web · Mobile · APIs", rank: 2 },
   { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Repos & coursework", rank: 3 },
   { id: "iv", badge: "IV", title: "EXPERIENCE", subtitle: "Tutor · Hospitality", rank: 4 },
