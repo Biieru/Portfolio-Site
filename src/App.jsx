@@ -7,10 +7,31 @@ import Socials from './Socials'
 import AboutMe from './AboutMe'
 import ResumePage from './ResumePage'
 import ProjectsPage from './ProjectsPage'
+import NotFound from './NotFound'
+import AudioControl from './AudioControl'
 import './App.css'
 
 const GITHUB_URL = 'https://github.com/Biieru'
 const BGM_SRC = '/audio/dorm-after-midnight.mp3'
+const STORAGE_VOLUME = 'bgm-volume'
+const STORAGE_MUTED = 'bgm-muted'
+
+function readStoredVolume() {
+  try {
+    const v = parseFloat(localStorage.getItem(STORAGE_VOLUME))
+    return Number.isFinite(v) ? Math.max(0, Math.min(1, v)) : 0.25
+  } catch {
+    return 0.25
+  }
+}
+
+function readStoredMuted() {
+  try {
+    return localStorage.getItem(STORAGE_MUTED) === '1'
+  } catch {
+    return false
+  }
+}
 
 function AmbientAudio({ audioRef, volume, muted }) {
   const ref = audioRef
@@ -21,7 +42,6 @@ function AmbientAudio({ audioRef, volume, muted }) {
     el.loop = true
     el.volume = volume
     el.muted = muted
-    el.preload = 'auto'
 
     const start = () => {
       el.play().catch(() => {})
@@ -42,7 +62,7 @@ function AmbientAudio({ audioRef, volume, muted }) {
       ref={ref}
       src={BGM_SRC}
       loop
-      preload="auto"
+      preload="none"
       aria-hidden
       style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }}
     />
@@ -58,7 +78,7 @@ function MenuBackdrop() {
   )
 }
 
-function MenuScreen({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
+function MenuScreen() {
   const navigate = useNavigate()
   const [activeMenuIndex, setActiveMenuIndex] = useState(0)
   const handleNavigate = useCallback(
@@ -77,19 +97,12 @@ function MenuScreen({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
       <div className={`menu-portrait-shell menu-portrait-shell--menu mounted pose-${activeMenuIndex}`} aria-hidden>
         <img className="menu-portrait menu-portrait--menu" src="/images/menu-portrait.png" alt="" />
       </div>
-      <P3Menu
-        onNavigate={handleNavigate}
-        onActiveChange={setActiveMenuIndex}
-        bgmVolume={bgmVolume}
-        bgmMuted={bgmMuted}
-        onToggleMute={onToggleMute}
-        onVolumeChange={onVolumeChange}
-      />
+      <P3Menu onNavigate={handleNavigate} onActiveChange={setActiveMenuIndex} />
     </div>
   )
 }
 
-function AnimatedRoutes({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
+function AnimatedRoutes() {
   const location = useLocation()
   return (
     <AnimatePresence mode="wait">
@@ -98,12 +111,7 @@ function AnimatedRoutes({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
           path="/"
           element={
             <PageTransition>
-              <MenuScreen
-                bgmVolume={bgmVolume}
-                bgmMuted={bgmMuted}
-                onToggleMute={onToggleMute}
-                onVolumeChange={onVolumeChange}
-              />
+              <MenuScreen />
             </PageTransition>
           }
         />
@@ -139,6 +147,14 @@ function AnimatedRoutes({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
             </PageTransition>
           }
         />
+        <Route
+          path="*"
+          element={
+            <PageTransition>
+              <NotFound />
+            </PageTransition>
+          }
+        />
       </Routes>
     </AnimatePresence>
   )
@@ -146,15 +162,25 @@ function AnimatedRoutes({ bgmVolume, bgmMuted, onToggleMute, onVolumeChange }) {
 
 export default function App() {
   const audioRef = useRef(null)
-  const [bgmVolume, setBgmVolume] = useState(0.25)
-  const [bgmMuted, setBgmMuted] = useState(false)
+  const [bgmVolume, setBgmVolume] = useState(readStoredVolume)
+  const [bgmMuted, setBgmMuted] = useState(readStoredMuted)
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_VOLUME, String(bgmVolume))
+      localStorage.setItem(STORAGE_MUTED, bgmMuted ? '1' : '0')
+    } catch {
+      /* armazenamento indisponível (modo privado etc.) */
+    }
+  }, [bgmVolume, bgmMuted])
 
   return (
     <>
       <AmbientAudio audioRef={audioRef} volume={bgmVolume} muted={bgmMuted} />
-      <AnimatedRoutes
-        bgmVolume={bgmVolume}
-        bgmMuted={bgmMuted}
+      <AnimatedRoutes />
+      <AudioControl
+        volume={bgmVolume}
+        muted={bgmMuted}
         onToggleMute={() => setBgmMuted((prev) => !prev)}
         onVolumeChange={(nextValue) => {
           const safe = Math.max(0, Math.min(1, nextValue))

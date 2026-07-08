@@ -1,11 +1,10 @@
-import * as Framer from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { motion as Motion, useReducedMotion } from "framer-motion";
 
 const defaultBlocks = ["#0d1a3a", "#1a6aff", "#7dd4fc"];
 
 function DefaultTransition() {
   return defaultBlocks.map((color, i) => (
-    <Framer.motion.div
+    <Motion.div
       key={i}
       style={{
         position: "fixed",
@@ -35,7 +34,7 @@ function AboutTransition() {
   ];
 
   return panels.map((panel, i) => (
-    <Framer.motion.div
+    <Motion.div
       key={i}
       style={{
         position: "fixed",
@@ -70,7 +69,7 @@ function SocialsTransition() {
   ];
 
   return stripes.map((stripe, i) => (
-    <Framer.motion.div
+    <Motion.div
       key={i}
       style={{
         position: "fixed",
@@ -105,7 +104,7 @@ function ResumeTransition() {
   ];
 
   return cards.map((card, i) => (
-    <Framer.motion.div
+    <Motion.div
       key={i}
       style={{
         position: "fixed",
@@ -137,7 +136,7 @@ function ResumeTransition() {
 function ProjectsTransition() {
   const blocks = ["#0a1538", "#1a6aff", "#e8f8ff"];
   return blocks.map((color, i) => (
-    <Framer.motion.div
+    <Motion.div
       key={i}
       style={{
         position: "fixed",
@@ -168,21 +167,19 @@ function TransitionOverlay({ variant }) {
 }
 
 export default function PageTransition({ children, variant = "default" }) {
-  const location = useLocation();
+  const reduceMotion = useReducedMotion();
 
   return (
-    <Framer.AnimatePresence mode="wait">
-      <Framer.motion.div key={location.pathname} style={{ position: "relative" }}>
-        <TransitionOverlay variant={variant} />
-        <Framer.motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2, delay: 0.18 }}
-        >
-          {children}
-        </Framer.motion.div>
-      </Framer.motion.div>
-    </Framer.AnimatePresence>
+    <Motion.div style={{ position: "relative" }}>
+      {!reduceMotion && <TransitionOverlay variant={variant} />}
+      <Motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 0.2, delay: 0.18 }}
+      >
+        {children}
+      </Motion.div>
+    </Motion.div>
   );
 }

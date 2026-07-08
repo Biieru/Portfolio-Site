@@ -16,8 +16,15 @@ npm run lint   # ESLint
 ```
 ## Estrutura relevante
 
-- `src/` — componentes e estilos
-- `public/` — assets estáticos (imagens, áudio, PDF do CV)
+- `src/` — componentes e estilos (`src/styles/` concentra o CSS por página)
+- `public/` — assets estáticos (imagens, áudio, PDF do CV, og-image)
+- `render.yaml` — config do Render (static site + rewrite de SPA para `index.html`)
+
+## Deploy (Render)
+
+O site usa `BrowserRouter`, então todas as rotas precisam de rewrite para
+`index.html`. O `render.yaml` já declara isso; se o serviço foi criado manualmente
+no dashboard, adicione em **Redirects/Rewrites**: `/*` → `/index.html` (Rewrite).
 
 ## Autoria
 
@@ -27,6 +34,7 @@ Estou aberto a contatos profissionais e colaborações:
 - Portfolio: https://gabriel-caraujo.onrender.com/
 - LinkedIn: https://www.linkedin.com/in/gabrielcaraujo
 - GitHub: https://github.com/Biieru
+- WhatsApp: https://wa.me/5581986646327
 
 ## Reuso e crédito
 

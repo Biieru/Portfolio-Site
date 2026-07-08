@@ -1,0 +1,62 @@
+.nf-root {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.nf-code {
+  font-family: 'Anton', sans-serif;
+  font-style: italic;
+  font-size: clamp(110px, 22vw, 260px);
+  line-height: 0.9;
+  letter-spacing: 4px;
+  color: #f6fbff;
+  text-shadow: 10px 6px 0 rgba(196, 0, 26, 0.85);
+  transform: rotate(-6deg);
+  user-select: none;
+}
+
+.nf-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 4vw, 34px);
+  letter-spacing: 6px;
+  color: #53edff;
+  margin-top: 18px;
+}
+
+.nf-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(12px, 2vw, 15px);
+  color: rgba(255,255,255,0.55);
+  max-width: 34em;
+}
+
+.nf-btn {
+  margin-top: 26px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  padding: 12px 26px;
+  border: 0;
+  cursor: pointer;
+  color: #041238;
+  background: #8df6ff;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.nf-btn:hover {
+  background: #ffffff;
+  transform: translateX(4px);
+}
+.nf-btn:focus-visible {
+  outline: 3px solid rgba(125, 212, 252, 0.85);
+  outline-offset: 3px;
+}

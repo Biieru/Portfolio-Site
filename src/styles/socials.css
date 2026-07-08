@@ -1,0 +1,234 @@
+/* Estilos específicos da tela Socials (a base .sc-* vem de sc-shared.css) */
+
+.screen-socials .sc-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.38);
+  transition: color 0.2s ease;
+  user-select: none;
+}
+.screen-socials .sc-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.screen-socials .sc-bar-outer.active .sc-icon { color: rgba(17,17,17,0.75); }
+
+.screen-socials .sc-right-nav {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 50;
+  animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
+}
+.screen-socials .sc-right-nav .sc-nav-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 8vw, 100px);
+  letter-spacing: 3px;
+  line-height: 1;
+  user-select: none;
+  color: #fff;
+  -webkit-text-stroke: 2px #000;
+  paint-order: stroke fill;
+  background: none;
+  border: none;
+  padding: 0 6px;
+}
+.screen-socials .sc-right-nav .sc-nav-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  line-height: 1;
+  user-select: none;
+  color: #111;
+  padding: 0 8px;
+}
+.screen-socials .sc-right-nav .sc-nav-arrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #c4001a;
+  display: inline-block;
+  user-select: none;
+}
+.screen-socials .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
+.screen-socials .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
+
+@keyframes sc-infobar-in {
+  0%   { opacity: 0; transform: translateX(40px); }
+  60%  { opacity: 1; transform: translateX(-4px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+/* Info bar é um <button> (abre o link ao clicar) */
+.sc-info-bar-wrap {
+  position: fixed;
+  right: 0;
+  left: 58%;
+  height: 46px;
+  background: transparent;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 50;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  animation: sc-infobar-in 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+.sc-info-bar-wrap:focus-visible {
+  outline: 3px solid rgba(125, 212, 252, 0.85);
+  outline-offset: 2px;
+}
+.sc-info-bar-wrap.selected {
+  background: #111;
+  padding: 1.5px;
+  border-radius: 8px;
+}
+.sc-info-bar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.sc-info-bar-wrap.selected .sc-info-bar {
+  background: #fff;
+  border-radius: 7px;
+}
+.sc-info-bar-wrap.selected .sc-info-bar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: #c4001a;
+  z-index: 1;
+}
+.sc-info-bar-text {
+  flex: 1;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(14px, 2vw, 22px);
+  letter-spacing: 2px;
+  color: #111;
+  padding: 0 14px;
+  user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sc-info-bar-box {
+  height: 70%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: #fff;
+  flex-shrink: 0;
+  border-radius: 6px;
+  margin-right: 4px;
+  user-select: none;
+}
+
+.sc-info-bar-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-left: 14px;
+  display: inline-flex;
+  align-items: center;
+  color: #111;
+  pointer-events: none;
+  user-select: none;
+}
+.sc-info-bar-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sc-info-bar-count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #111;
+  margin-right: 24px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-socials .sc-right-nav,
+  .sc-info-bar-wrap {
+    animation: none;
+  }
+}
+
+@media (max-width: 1100px), (pointer: coarse) {
+  .socials-portrait-shell {
+    opacity: 0.2;
+    right: -20vw;
+    width: 96vw;
+  }
+  .screen-socials .sc-root {
+    padding-top: 24vh;
+  }
+  .screen-socials .sc-label {
+    font-size: clamp(12px, 3.8vw, 18px);
+  }
+  .screen-socials .sc-stat-num {
+    font-size: clamp(15px, 3.8vw, 20px);
+  }
+  .screen-socials .sc-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .screen-socials .sc-right-nav {
+    top: 10px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 0 4px;
+  }
+  .screen-socials .sc-right-nav .sc-nav-btn {
+    font-size: clamp(26px, 8vw, 48px);
+  }
+  .screen-socials .sc-right-nav .sc-nav-label {
+    font-size: clamp(14px, 4.5vw, 20px);
+    color: #fff;
+    -webkit-text-stroke: 1px #000;
+    paint-order: stroke fill;
+  }
+  .sc-info-bar-wrap {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    top: 84px !important;
+    height: auto;
+    min-height: 42px;
+  }
+  .sc-info-bar-text {
+    font-size: clamp(11px, 3.2vw, 16px);
+    letter-spacing: 1px;
+  }
+  .sc-info-bar-box {
+    font-size: clamp(12px, 3vw, 16px);
+    padding: 0 8px;
+  }
+  .sc-info-bar-count {
+    font-size: clamp(14px, 3.5vw, 18px);
+    margin-right: 8px;
+  }
+}

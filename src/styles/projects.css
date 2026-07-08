@@ -1,0 +1,128 @@
+.proj-root {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  overflow: auto;
+  padding: 6vh 5vw 9vh;
+  pointer-events: all;
+}
+.proj-head {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  color: #f6fbff;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.2);
+  margin-bottom: 28px;
+}
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Card inteiro é um link */
+.proj-card {
+  background: rgba(8, 18, 72, 0.92);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+  box-shadow: inset 0 0 0 1px rgba(140, 239, 255, 0.14), 0 12px 30px rgba(0,0,0,0.45);
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 160px;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.proj-card.mounted {
+  opacity: 1;
+  transform: translateY(0);
+}
+.proj-card:hover,
+.proj-card:focus-visible {
+  background: rgba(12, 26, 94, 0.98);
+  box-shadow:
+    inset 0 0 0 1px rgba(140, 239, 255, 0.55),
+    8px 8px 0 rgba(196, 0, 26, 0.75),
+    0 12px 30px rgba(0,0,0,0.45);
+  transform: translate(-4px, -4px);
+}
+.proj-card:focus-visible {
+  outline: 3px solid rgba(125, 212, 252, 0.85);
+  outline-offset: 2px;
+}
+
+.proj-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: #a5f6ff;
+}
+.proj-badge {
+  align-self: flex-start;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  color: #041238;
+  background: #8df6ff;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
+}
+.proj-card p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.62);
+  flex: 1;
+}
+.proj-stack {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  color: rgba(125, 212, 252, 0.85);
+}
+.proj-link {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: #ff6a88;
+  margin-top: 4px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+.proj-card:hover .proj-link,
+.proj-card:focus-visible .proj-link {
+  color: #ffb3c7;
+  transform: translateX(4px);
+}
+
+.proj-section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 28px;
+  color: #f6fbff;
+  margin: 10px 0 14px;
+  letter-spacing: 2px;
+}
+
+.proj-footer {
+  position: fixed;
+  bottom: 20px;
+  right: 28px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.22);
+  z-index: 20;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-card {
+    transition-duration: 0.01ms;
+    transition-delay: 0ms !important;
+  }
+}

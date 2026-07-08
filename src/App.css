@@ -13,15 +13,9 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  /* dvh evita o "pulo" da barra de endereço no mobile */
+  height: 100dvh;
   overflow: hidden;
-}
-
-#menu-screen > video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .menu-backdrop {
@@ -54,6 +48,12 @@ body {
 @keyframes menu-bg-shift {
   from { filter: hue-rotate(0deg) saturate(1); transform: scale(1); }
   to { filter: hue-rotate(5deg) saturate(1.03); transform: scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-backdrop__grad {
+    animation: none;
+  }
 }
 
 .menu-portrait-shell {
